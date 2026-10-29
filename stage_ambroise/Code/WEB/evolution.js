@@ -96,7 +96,7 @@ function evolutionResume(donnees, variable, minHab = 0) {
 // contribution à la variation du score de sa dimension, dispersion entre communes (pouvoir discriminant) et corrélation avec la variation de l'indice (variable explicative de l'évolution).
 const EVOLUTION_SEUIL_STABLE = 0.5;          // en points de l'échelle de l'indicateur (0-100) : en dessous, une commune compte comme « stable »
 const EVOLUTION_FORMAT_INDICATEURS = { Opp1: [2, ''], Opp2: [3, ''], Opp3: [0, ''], Opp4: [1, ' %'], Cho1: [2, ''], Cho2: [1, ' %'], Vec1: [0, ' €'], Vec2: [3, ''], Vec3: [3, ''], Vec4: [0, ''] };
-const EVOLUTION_NOMS_COURTS = { Opp1: 'Opp1 · diplôme', Opp2: 'Opp2 · diversité sociale (Theil)', Opp3: 'Opp3 · mobilité', Opp4: 'Opp4 · connectivité', Cho1: 'Cho1 · quartiers prioritaires', Cho2: 'Cho2 · droit de vote', Vec1: 'Vec1 · revenu fiscal moyen', Vec2: 'Vec2 · logement', Vec3: 'Vec3 · stabilité de l’emploi', Vec4: 'Vec4 · services à 20 min' };
+const EVOLUTION_NOMS_COURTS = { Opp1: 'Opp1 · diplôme', Opp2: 'Opp2 · diversité sociale', Opp3: 'Opp3 · mobilité', Opp4: 'Opp4 · connectivité', Cho1: 'Cho1 · quartiers prioritaires', Cho2: 'Cho2 · droit de vote', Vec1: 'Vec1 · revenu fiscal moyen', Vec2: 'Vec2 · logement', Vec3: 'Vec3 · stabilité de l’emploi', Vec4: 'Vec4 · services à 20 min' };
 const EVOLUTION_COURBES = [['OppChoVec', 'Indice', '#222222'], ['Opp', 'Opp', '#0072b2'], ['Cho', 'Cho', '#d55e00'], ['Vec', 'Vec', '#009e73']];
 
 function evolutionMoyennePonderee(valeurs, poids) {
