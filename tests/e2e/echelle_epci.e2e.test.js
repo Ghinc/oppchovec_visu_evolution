@@ -74,7 +74,7 @@ test('Échelle EPCI : cartes, top 10, sélection, bandeaux ; deux méthodes ; re
     await page.click('.tab-button[data-tab="dominancetab"]');
     await page.waitForFunction(() => dominanceLayerRef && dominanceLayerRef.getLayers().length === 360);
     assert.deepEqual(nouvellesErreurs().filter((m) => !/404/.test(m)), []);
-  });
+  }, { dominance: true });
 });
 
 test('Échelle EPCI : l\'onglet Évolution passe aux EPCI (19 polygones, série EPCI, fiche avec communes membres), puis revient aux communes', { skip: sansEvolution || sauter }, async () => {
@@ -136,7 +136,7 @@ test('Échelle EPCI : l\'onglet Évolution passe aux EPCI (19 polygones, série 
     assert.equal(await page.locator('#evolution-griser').isDisabled(), false);
     assert.ok(!(await page.locator('.evolution-titre-onglet').innerText()).includes('EPCI'));
     assert.deepEqual(nouvellesErreurs().filter((m) => !/404/.test(m)), []);
-  });
+  }, { dominance: true });
 });
 
 test('Échelle EPCI : « commune » devient « EPCI » dans les titres et légendes, et le détail du calcul reste disponible (tableau des communes, indice)', { skip: sauter }, async () => {
@@ -183,7 +183,7 @@ test('Échelle EPCI : « commune » devient « EPCI » dans les titres et légen
     await page.waitForFunction(() => document.querySelector('[data-translate="commune-title"]').textContent.includes('commune'));
     assert.match(await page.locator('#communeSelect option[value=""]').innerText(), /commune/);
     assert.deepEqual(nouvellesErreurs().filter((m) => !/404/.test(m)), []);
-  });
+  }, { dominance: true });
 });
 
 test('Échelle EPCI : curseurs sur les valeurs agrégées d\'un EPCI (simulation), Recalculer ne change que cet EPCI, Réinitialiser restaure', { skip: sauter }, async () => {
@@ -214,7 +214,7 @@ test('Échelle EPCI : curseurs sur les valeurs agrégées d\'un EPCI (simulation
       await page.waitForFunction(() => { let n = 0; geojsonLayers.oppchovec.eachLayer(() => n++); return n === 360; });
     }
     assert.deepEqual(nouvellesErreurs().filter((m) => !/404/.test(m)), []);
-  });
+  }, { dominance: true });
 });
 
 test('Mode EPCI : « Comparer » dans le panneau (comme pour deux communes) — second EPCI, tableau côte à côte, les deux surlignés, simulation prise en compte', { skip: sauter }, async () => {
@@ -267,5 +267,5 @@ test('Mode EPCI : « Comparer » dans le panneau (comme pour deux communes) — 
     await page.click('#resultCommune .epci-bouton-comparer');
     assert.equal(await page.locator('#resultCommune .epci-comparaison').count(), 0);
     assert.deepEqual(nouvellesErreurs(), []);
-  });
+  }, { dominance: true });
 });

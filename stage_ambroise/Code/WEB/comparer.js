@@ -223,8 +223,14 @@ function initialiserOngletComparer() {
         return;
     }
     if (!geoUnites() || !scoresParCommune || Object.keys(scoresParCommune).length === 0) { console.warn('Comparer: données non prêtes'); return; }
-    comparerInitialise = true;
     const liste = document.getElementById('communeSelect');
+    // Aucune commune choisie : Bastia par défaut (sélection commune à l'ensemble de l'appli), pour que l'onglet ne paraisse pas vide
+    if (liste && !liste.value && [...liste.options].some(o => o.value === 'Bastia')) {
+        liste.value = 'Bastia';
+        const valider = document.getElementById('validerCommune');
+        if (valider) valider.click();
+    }
+    comparerInitialise = true;
     if (liste && liste.value) comparerRef = liste.value;
     _carteComparer = L.map(document.getElementById('map-comparer'), { center: [42.0, 9.0], zoom: 8, zoomSnap: 0.1, zoomDelta: 0.1 });
     _carteComparer.getContainer().style.backgroundColor = '#ffffff';
