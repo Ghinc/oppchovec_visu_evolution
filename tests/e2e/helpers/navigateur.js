@@ -61,7 +61,8 @@ const REQUETES_IGNOREES = [/favicon\.ico/];
 /** Ouvre la page de l'appli et attend qu'elle soit entièrement initialisée. Renvoie {page, erreurs, alertes}. */
 async function ouvrirAppli(browser, baseUrl, options = {}) {
   const page = await browser.newPage({ viewport: { width: 1500, height: 1000 } });
-  if (options.comparer) await page.addInitScript(() => { window.SITE_COMPARER = true; });
+  if (options.dominance) await page.addInitScript(() => { window.SITE_DOMINANCE = true; });
+  if (options.sansComparer) await page.addInitScript(() => { window.SITE_COMPARER = false; });
   const etat = { page, erreurs: [], alertes: [], requetesEchouees: [] };
   page.on('pageerror', (e) => etat.erreurs.push(e.message));
   page.on('console', (m) => { if (m.type() === 'error' && !/Failed to load resource/.test(m.text())) etat.erreurs.push('console: ' + m.text()); });

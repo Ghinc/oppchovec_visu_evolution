@@ -26,7 +26,7 @@ test('Dominance : panneau latéral masqué dans l\'onglet, restauré ailleurs, c
     await page.click('.tab-button[data-tab="opptab"]');
     assert.ok(await page.locator('aside').isVisible(), 'panneau restauré dans les autres onglets');
     assert.deepEqual(nouvellesErreurs(), []);
-  });
+  }, { dominance: true });
 });
 
 test('Dominance : texte explicatif intact, carte colorée par couche, légende en « couches », fiche au clic', { skip: sauter }, async () => {
@@ -79,5 +79,5 @@ test('Dominance : texte explicatif intact, carte colorée par couche, légende e
     await page.click(`#dominance-fiche .dominance-lien[data-commune="${premier}"]`);
     assert.match(await page.$eval('#dominance-fiche h4', (e) => e.textContent), new RegExp(premier.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
     assert.deepEqual(nouvellesErreurs(), []);
-  });
+  }, { dominance: true });
 });
